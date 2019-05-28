@@ -1,0 +1,12 @@
+Data
+
+To solve this problem, I will need below data:
+
+List of neighborhoods in Toronto, Canada.
+Latitude and Longitude of these neighborhoods.
+Venue data related to Asian restaurants. This will help us find the neighborhoods that are most suitable to open a Chinese restaurant.
+Extracting the data
+
+Scrapping of Toronto neighborhoods via Wikipedia
+Getting Latitude and Longitude data of these neighborhoods via Geocoder package
+Using Foursquare API to get venue data related to these neighborhoods
