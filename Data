@@ -10,17 +10,3 @@ Extracting the data
 Scrapping of Toronto neighborhoods via Wikipedia
 Getting Latitude and Longitude data of these neighborhoods via Geocoder package
 Using Foursquare API to get venue data related to these neighborhoods.
-
-Methodology
-
-First, I need to get the list of neighborhoods in Toronto, Canada. This is possible by extracting the list of neighborhoods from wikipedia page (“https://en.wikipedia.org/wiki/List_of_postal_codes_of_Canada:_M”)
-
-I did the web scraping by utilizing pandas html table scraping method as it is easier and more convenient to pull tabular data directly from a web page into dataframe.
-
-However, it is only a list of neighborhood names and postal codes. I will need to get their coordinates to utilize Foursquare to pull the list of venues near these neighborhoods. To get the coordinates, I tried using Geocoder package but it was not working so I used the csv file provided by IBM team to match the coordinates of Toronto neighborhoods. After gathering all these coordinates, I visualized the map of Toronto using Folium package to verify whether these are correct coordinates.
-
-Next, I use Foursquare API to pull the list of top 100 venues within 500 meters radius. I have created a Foursquare developer account in order to obtain account ID and API key to pull the data. From Foursquare, I am able to pull the names, categories, latitude and longitude of the venues. With this data, I can also check how many unique categories that I can get from these venues. Then, I analyze each neighborhood by grouping the rows by neighborhood and taking the mean on the frequency of occurrence of each venue category. This is to prepare clustering to be done later.
-
-Here, I made a justification to specifically look for “Thai restaurants”. Previously, when I ran the model, I was looking for “Asian restaurants” but there are very few results (maybe due to Foursquare categorization) so I looked for the restaurants closest to Chinese cuisine taste (side note: Chinese food and Thai food are very similar in taste, so my justification is that if there are people who enjoyed Thai food, they likely are going to enjoy Chinese food too!)
-
-Lastly, I performed the clustering method by using k-means clustering. K-means clustering algorithm identifies k number of centeriods, and then allocates every data point to the nearest cluster, while keeping the centroids as small as possible. It is one of the simplest and popular unsupervised machine learning algorithms and it is highly suited for this project as well. I have clustered the neighborhoods in Toronto into 3 clusters based on their frequency of occurrence for “Thai food”. Based on the results (the concentration of clusters), I will be able to recommend the ideal location to open the restaurant.
